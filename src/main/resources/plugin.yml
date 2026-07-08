@@ -1,0 +1,19 @@
+name: EconomyShopSearch
+version: '1.0.0'
+main: com.yourname.economyshopsearch.EconomyShopSearch
+api-version: '1.21'
+depend:
+  - EconomyShopGUI
+description: Modern GUI search system for EconomyShopGUI.
+commands:
+  search:
+    description: Search for items in the shop.
+    aliases: [eshopsearch]
+    permission: economyshopsearch.search
+permissions:
+  economyshopsearch.use:
+    description: Allows using the addon.
+    default: true
+  economyshopsearch.search:
+    description: Allows using the /search command.
+    default: true
