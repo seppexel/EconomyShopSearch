@@ -19,7 +19,7 @@ jobs:
         gradle-version: '8.8'
 
     - name: Build Plugin
-      run: gradle build
+      run: gradle build --refresh-dependencies
 
     - name: Upload Finished Jar
       uses: actions/upload-artifact@v4
