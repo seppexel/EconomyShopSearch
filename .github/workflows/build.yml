@@ -18,6 +18,14 @@ jobs:
       with:
         gradle-version: '8.8'
 
+    # This steps grabs the real plugin jar from Modrinth and saves it locally
+    - name: Fetch EconomyShopGUI Core Plugin Depend
+      run: |
+        mkdir -p libs
+        JAR_URL=$(curl -s "https://api.modrinth.com/v2/project/economyshopgui/version" | jq -r '.[0].files[0].url')
+        echo "Downloading core dependency from: $JAR_URL"
+        curl -L -o libs/EconomyShopGUI.jar "$JAR_URL"
+
     - name: Build Plugin
       run: gradle build
 
