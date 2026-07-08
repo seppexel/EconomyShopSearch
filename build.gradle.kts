@@ -14,15 +14,14 @@ java {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://jitpack.io") // Target JitPack
 }
 
 dependencies {
     // Paper 1.21.1 Development environment
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
     
-    // This targets the live branch directly, bypassing the broken version tags!
-    compileOnly("com.github.Gypopo:EconomyShopGUI-API:main-SNAPSHOT")
+    // Forces the compiler to read directly from our downloaded core jar file
+    compileOnly(files("libs/EconomyShopGUI.jar"))
 }
 
 tasks {
