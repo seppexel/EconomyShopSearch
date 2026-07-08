@@ -22,16 +22,16 @@ jobs:
     - name: Clone EconomyShopGUI API Source
       run: git clone https://github.com/Gypopo/EconomyShopGUI-API.git extra-api
 
-    # Compile the API source code directly into a JAR via Maven
+    # Compile the API source code and dynamically find/rename the output jar
     - name: Build EconomyShopGUI API Jar
       run: |
         cd extra-api
         mvn clean package -DskipTests
         cd ..
         mkdir -p libs
-        cp extra-api/target/*.jar libs/
+        find extra-api/target/ -name "*.jar" ! -name "*-sources.jar" ! -name "*-javadoc.jar" -exec cp {} libs/EconomyShopGUI-API.jar \;
 
-    # Run the main plugin builder utilizing our freshly built local API file
+    # Run the main plugin builder utilizing our explicitly located API file
     - name: Build Plugin
       run: gradle build
 
