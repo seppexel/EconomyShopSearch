@@ -14,15 +14,14 @@ java {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://jitpack.io") // Fetches the EconomyShopGUI API directly from GitHub
 }
 
 dependencies {
     // Paper 1.21.1 Development environment
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
     
-    // Updated to the stable 1.10.0 release using 'implementation' to force download
-    implementation("com.github.Gypopo:EconomyShopGUI-API:1.10.0")
+    // Instead of JitPack, we'll use a local folder that our GitHub action will fill with the code
+    implementation(fileTree("libs") { include("*.jar") })
 }
 
 tasks {
