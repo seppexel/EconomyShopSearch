@@ -14,22 +14,13 @@ java {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    // Official repository hosting the EconomyShopGUI API
+    maven("https://repo.bg-software.com/repository/api/")
 }
 
 dependencies {
     // Paper 1.21.1 Development environment
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
     
-    // Forces the compiler to read directly from our downloaded core jar file
-    compileOnly(files("libs/EconomyShopGUI.jar"))
-}
-
-tasks {
-    assemble {
-        dependsOn(reobfJar)
-    }
-    compileJava {
-        options.encoding = Charsets.UTF_8.name()
-        options.release.set(21)
-    }
-}
+    // Pulls the verified API directly via Maven dependency management
+    compileOnly("me.gypopo:EconomyShopGUI-API:1.10.0")
