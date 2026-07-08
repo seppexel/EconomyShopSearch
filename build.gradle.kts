@@ -24,3 +24,14 @@ dependencies {
     
     // Pulls the verified API directly via Maven dependency management
     compileOnly("me.gypopo:EconomyShopGUI-API:1.10.0")
+} // <-- This is the bracket that was missing!
+
+tasks {
+    assemble {
+        dependsOn(reobfJar)
+    }
+    compileJava {
+        options.encoding = Charsets.UTF_8.name()
+        options.release.set(21)
+    }
+}
