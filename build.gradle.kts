@@ -1,6 +1,6 @@
 plugins {
     java
-    id("io.papermc.paperweight.userdev") version "1.7.1" // Required for Paper 1.21+
+    id("io.papermc.paperweight.userdev") version "1.7.1"
 }
 
 group = "com.yourname.economyshopsearch"
@@ -18,15 +18,15 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    // This line fixes the error! It gives Paperweight the dev bundle it was begging for
+    paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
     
     // EconomyShopGUI API 
-    // Uses JitPack to pull the mock API provided by the developer
     compileOnly("com.github.Gypopo:EconomyShopGUI-API:1.8.0")
 }
 
 tasks {
-    build {
+    assemble {
         dependsOn(reobfJar)
     }
     compileJava {
