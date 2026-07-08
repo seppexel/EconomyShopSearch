@@ -18,26 +18,6 @@ jobs:
       with:
         gradle-version: '8.8'
 
-    # Fixed: Added mandatory User-Agent header and a bulletproof backup download link
-    - name: Fetch EconomyShopGUI Core Plugin Dependency
-      run: |
-        mkdir -p libs
-        
-        echo "Querying Modrinth API with required User-Agent..."
-        JAR_URL=$(curl -s -H "User-Agent: GitHubActions/EconomyShopSearchBuild" "https://api.modrinth.com/v2/project/economyshopgui/version" | jq -r '.[0].files[0].url')
-        
-        if [ -z "$JAR_URL" ] || [ "$JAR_URL" == "null" ]; then
-          echo "Modrinth API gave an empty response. Deploying fallback direct URL..."
-          JAR_URL="https://cdn.modrinth.com/data/v1Z4bYt6/versions/pbR8XnNq/EconomyShopGUI-6.1.1.jar"
-        fi
-        
-        echo "Downloading core dependency from: $JAR_URL"
-        curl -L -H "User-Agent: GitHubActions/EconomyShopSearchBuild" -o libs/EconomyShopGUI.jar "$JAR_URL"
-
-    # Verifies the file downloaded successfully before starting the compiler
-    - name: Verify Dependency Presence
-      run: ls -la libs/
-
     - name: Build Plugin
       run: gradle build
 
