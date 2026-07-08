@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Plugin Code
+    - name: Checkout Code
       uses: actions/checkout@v4
 
     - name: Set up JDK 21
@@ -18,20 +18,6 @@ jobs:
       with:
         gradle-version: '8.8'
 
-    # Step to download and clone the API repository directly
-    - name: Clone EconomyShopGUI API Source
-      run: git clone https://github.com/Gypopo/EconomyShopGUI-API.git extra-api
-
-    # Compile the API source code and dynamically find/rename the output jar
-    - name: Build EconomyShopGUI API Jar
-      run: |
-        cd extra-api
-        mvn clean package -DskipTests
-        cd ..
-        mkdir -p libs
-        find extra-api/target/ -name "*.jar" ! -name "*-sources.jar" ! -name "*-javadoc.jar" -exec cp {} libs/EconomyShopGUI-API.jar \;
-
-    # Run the main plugin builder utilizing our explicitly located API file
     - name: Build Plugin
       run: gradle build
 
