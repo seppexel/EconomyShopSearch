@@ -1,0 +1,16 @@
+# EconomyShopSearch Configuration
+
+# Maximum amount of items to display in search results
+search-limit: 500
+
+# Minimum characters required to initiate a search
+search-min-length: 2
+
+# Whether clicking an item should open the specific EconomyShopGUI buy menu
+open-buy-menu: true
+
+# Enable partial matching (ignoring underscores and spaces)
+enable-fuzzy-search: true
+
+# Whether the search should be case-sensitive
+case-sensitive: false
