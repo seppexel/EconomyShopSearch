@@ -14,15 +14,15 @@ java {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://jitpack.io") // For EconomyShopGUI API
+    maven("https://jitpack.io") // Fetches the EconomyShopGUI API directly from GitHub
 }
 
 dependencies {
-    // This line fixes the error! It gives Paperweight the dev bundle it was begging for
+    // Paper 1.21.1 Development environment
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
     
-    // EconomyShopGUI API 
-    compileOnly("com.github.Gypopo:EconomyShopGUI-API:1.8.0")
+    // Updated to the stable 1.10.0 release using 'implementation' to force download
+    implementation("com.github.Gypopo:EconomyShopGUI-API:1.10.0")
 }
 
 tasks {
